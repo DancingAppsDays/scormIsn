@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "text": "¿Cuál es la primera acción que se debe tomar al detectar una emergencia de incendio en un edificio?",
+            "options": [
+                "Llamar a los bomberos",
+                "Evacuar el edificio inmediatamente",
+                "Informar a la brigada de emergencia",
+                "Tratar de apagar el fuego"
+            ],
+            "correctAnswer": "Evacuar el edificio inmediatamente"
+        },
+        {
+            "text": "¿Cuál de las siguientes opciones es una medida adecuada durante la evacuación en caso de incendio?",
+            "options": [
+                "Usar el ascensor",
+                "Mantener la calma y evacuar por las rutas señalizadas",
+                "Evitar usar las escaleras",
+                "Correr para salir más rápido"
+            ],
+            "correctAnswer": "Mantener la calma y evacuar por las rutas señalizadas"
+        },
+        {
+            "text": "¿Qué deben hacer las personas con movilidad reducida durante una evacuación?",
+            "options": [
+                "Quedarse en el lugar hasta que alguien los auxilie",
+                "Usar el ascensor para salir rápidamente",
+                "Ser asistidos por personal capacitado en evacuación",
+                "Evacuar por las ventanas"
+            ],
+            "correctAnswer": "Ser asistidos por personal capacitado en evacuación"
+        },
+        {
+            "text": "¿Cómo se deben utilizar las rutas de evacuación en caso de emergencia?",
+            "options": [
+                "Usarlas solo si se encuentra una salida bloqueada",
+                "Siguiendo las señales de emergencia y sin obstruir el paso",
+                "Por cualquier ruta disponible",
+                "De acuerdo a las indicaciones del jefe de seguridad"
+            ],
+            "correctAnswer": "Siguiendo las señales de emergencia y sin obstruir el paso"
+        },
+        {
+            "text": "¿Qué hacer si se encuentra atrapado durante una evacuación de emergencia?",
+            "options": [
+                "Gritar y hacer señales visibles para llamar la atención",
+                "Intentar escapar por cualquier ventana",
+                "Esperar en silencio a que llegue ayuda",
+                "Intentar apagar el fuego con los medios disponibles"
+            ],
+            "correctAnswer": "Gritar y hacer señales visibles para llamar la atención"
+        }
+    ]
+}

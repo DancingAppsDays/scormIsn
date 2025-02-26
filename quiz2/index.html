@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniprotect certificación</title>
+    <link rel="stylesheet" href="../lib/style.css">
+    <style>
+        /* body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }*/
+    </style>
+    <!-- Include the SCORM API wrapper -->
+    <script src="../lib/SCORM_API_wrapper.js"></script>
+</head>
+
+<body>
+    <div class="uniprotec-container">
+        <img src="../uniprotectheader.png" width="300" sizealt="Logo" class="uniprotec-logo">
+        <h1 id="quizTitle" class="uniprotec-title">Quiz Title</h1>
+
+
+        <div class="video-container">
+            <iframe id="youtubeEmbed" width="560" height="315" src="" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+
+        <h4 class="uniprotec-p">Mira el video y contesta la evaluación teórica para continuar</h4>
+        <div class="quiz-container">
+            <h2 class="uniprotec-subtitle">Evaluación</h2>
+            <div id="quizContent">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <button id="submitBtn" onclick="submitQuiz()" disabled>Calificar</button>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        // SCORM connection
+        var scorm = pipwerks.SCORM;
+        var scormConnected = false;
+
+        // Quiz data will be loaded from external JSON
+        let quizData = null;
+        let quizConfig = null;
+
+        // Initialize when page loads with delay
+        window.onload = function () {
+            setTimeout(function () {
+                initializeSCORM();
+                loadQuizData();
+            }, 500); // 500ms delay
+        };
+
+
+        function initializeSCORM() {
+            scormConnected = scorm.init();
+            console.log("SCORM initialized: " + scormConnected);
+
+            if (scormConnected) {
+                scorm.set("cmi.completion_status", "incomplete");
+                scorm.set("cmi.success_status", "unknown");
+                scorm.set("cmi.score.min", "0");
+                scorm.set("cmi.score.max", "100");
+                scorm.set("cmi.score.scaled", "0");
+                scorm.save();
+            } else {
+                console.warn("SCORM API not found - running in standalone mode");
+            }
+        }
+
+
+        function loadQuizData() {
+            fetch('quiz-config.json')
+                .then(response => response.json())
+                .then(config => {
+                    quizConfig = config;
+                    document.getElementById('quizTitle').textContent = config.title;
+                    document.getElementById('youtubeEmbed').src = config.videoUrl;
+
+                    return fetch(config.questionsFile);
+                })
+                .then(response => response.json())
+                .then(data => {
+                    quizData = data;
+                    renderQuiz();
+                })
+                .catch(error => {
+                    console.error('Error loading quiz data:', error);
+                    quizData = {
+                        questions: [{
+                            text: "Error loading quiz data",
+                            options: ["Please try again later"],
+                            correctAnswer: "Please try again later"
+                        }]
+                    };
+                    renderQuiz();
+                });
+        }
+
+        function renderQuiz() {
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = '';
+
+            quizData.questions.forEach((question, questionIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+
+                const questionText = document.createElement('p');
+                questionText.textContent = `${questionIndex + 1}. ${question.text}`;
+                questionDiv.appendChild(questionText);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+
+                question.options.forEach((option, optionIndex) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = 'question' + questionIndex;
+                    radio.value = option;
+                    radio.id = `q${questionIndex}_option${optionIndex}`;
+                    radio.addEventListener('change', checkAllQuestionsAnswered);
+
+                    const label = document.createElement('label');
+                    label.htmlFor = `q${questionIndex}_option${optionIndex}`;
+                    label.textContent = option;
+
+                    optionDiv.appendChild(radio);
+                    optionDiv.appendChild(label);
+                    optionsDiv.appendChild(optionDiv);
+                });
+
+                questionDiv.appendChild(optionsDiv);
+                quizContent.appendChild(questionDiv);
+            });
+        }
+
+        // Submit the quiz
+        function submitQuiz() {
+            let score = 0;
+            const totalQuestions = quizData.questions.length;
+            const results = [];
+
+            quizData.questions.forEach((question, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (!selectedOption) {
+                    results.push(`Question ${index + 1}: Not answered`);
+                    return;
+                }
+
+                if (selectedOption.value === question.correctAnswer) {
+                    score++;
+                    results.push(`Question ${index + 1}: Correct`);
+                } else {
+                    results.push(`Question ${index + 1}: Incorrect (You selected: ${selectedOption.value}, Correct answer: ${question.correctAnswer})`);
+                }
+            });
+
+            const percentageScore = (score / totalQuestions) * 100;
+
+            // Show results
+            const resultsElement = document.getElementById('results');
+            resultsElement.style.display = 'block';
+            resultsElement.innerHTML = `
+                <p>Your score: ${score}/${totalQuestions} (${percentageScore.toFixed(2)}%)</p>
+                <p>${percentageScore >= 80 ? 'Felicitaciones! Pasaste la evaluación.' : 'Has fallado la evaluación.'}</p>
+            `;
+
+            // Submit to SCORM
+            if (scormConnected) {
+
+                console.log("Submitting to SCORM");
+
+                scorm.set("cmi.score.raw", percentageScore.toString());
+                var scaledScore = percentageScore / 100;
+                scorm.set("cmi.score.scaled", scaledScore.toString());
+
+                if (scaledScore >= 0.8) {
+                    scorm.set("cmi.completion_status", "completed");
+                    scorm.set("cmi.success_status", "passed");
+                } else {
+                    scorm.set("cmi.completion_status", "completed");
+                    scorm.set("cmi.success_status", "failed");
+                }
+
+                scorm.save();
+            }
+
+            // Disable submit button
+            document.getElementById('submitBtn').disabled = true;
+        }
+
+
+        window.onunload = function () {
+            if (scormConnected) {
+                scorm.save();
+                scorm.quit();
+            }
+        };
+
+        // Function to check if all questions are answered
+        function checkAllQuestionsAnswered() {
+            const totalQuestions = quizData.questions.length;
+            let allAnswered = true;
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="question${i}"]:checked`);
+                if (!selectedOption) {
+                    allAnswered = false;
+                    break;
+                }
+            }
+
+            document.getElementById('submitBtn').disabled = !allAnswered;
+        }
+
+
+    </script>
+</body>
+
+</html>

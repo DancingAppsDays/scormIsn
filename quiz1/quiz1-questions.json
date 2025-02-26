@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "text": "¿Cuál es el objetivo principal de una brigada contra incendios en una empresa?",
+            "options": [
+                "Evitar que el fuego se propague",
+                "Apagar el fuego completamente",
+                "Rescatar personas atrapadas",
+                "Todos los anteriores"
+            ],
+            "correctAnswer": "Todos los anteriores"
+        },
+        {
+            "text": "¿Qué equipo debe llevar un miembro de la brigada contra incendios durante una emergencia?",
+            "options": [
+                "Casco, guantes y máscara",
+                "Botas y chaleco reflectante",
+                "Equipo de protección personal completo",
+                "Solo guantes"
+            ],
+            "correctAnswer": "Equipo de protección personal completo"
+        },
+        {
+            "text": "¿Cómo debe evacuarse un edificio en caso de incendio?",
+            "options": [
+                "Utilizando ascensores",
+                "A través de las rutas de evacuación establecidas",
+                "Saliendo por la entrada principal",
+                "Ninguna de las anteriores"
+            ],
+            "correctAnswer": "A través de las rutas de evacuación establecidas"
+        },
+        {
+            "text": "¿Qué tipo de extintor es adecuado para incendios de materiales eléctricos?",
+            "options": [
+                "Extintor de agua",
+                "Extintor de dióxido de carbono (CO2)",
+                "Extintor de espuma",
+                "Extintor de polvo químico"
+            ],
+            "correctAnswer": "Extintor de dióxido de carbono (CO2)"
+        },
+        {
+            "text": "¿Con qué frecuencia debe entrenarse la brigada contra incendios de una empresa?",
+            "options": [
+                "Una vez al año",
+                "Cada seis meses",
+                "Cada tres meses",
+                "De forma continua"
+            ],
+            "correctAnswer": "Cada seis meses"
+        }
+    ]
+}

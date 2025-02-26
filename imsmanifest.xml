@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="com.example.quizzes" version="1.0" 
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" 
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 4th Edition</schemaversion>
+  </metadata>
+  <organizations default="default_org">
+    <organization identifier="default_org">
+      <title>Brigadas de emergencia</title>
+      
+     
+      <item identifier="quiz1" identifierref="resource_quiz1">
+        <title>Combate contra incendios</title>
+        <adlcp:completionThreshold>0.8</adlcp:completionThreshold>
+         <adlcp:scaledPassingScore>0.8</adlcp:scaledPassingScore>
+      </item>
+      
+      
+      <item identifier="quiz2" identifierref="resource_quiz2">
+        <title>Evacuación de emergencia</title>
+        <adlcp:completionThreshold>0.8</adlcp:completionThreshold>
+          <adlcp:scaledPassingScore>0.8</adlcp:scaledPassingScore>
+      </item>
+
+      
+      <item identifier="quiz3" identifierref="resource_quiz3">
+        <title>Primeros auxilios</title>
+        <adlcp:completionThreshold>0.8</adlcp:completionThreshold>
+          <adlcp:scaledPassingScore>0.8</adlcp:scaledPassingScore>
+      </item>
+      
+      
+      
+    </organization>
+  </organizations>
+  <resources>
+    <!-- Quiz 1 Resources -->
+    <resource identifier="resource_quiz1" type="webcontent" adlcp:scormType="sco" href="quiz1/index.html">
+      <file href="quiz1/index.html"/>
+      <file href="quiz1/quiz-config.json"/>
+      <file href="quiz1/quiz1-questions.json"/>
+      <file href="lib/SCORM_API_wrapper.js"/>
+      <file href="lib/style.css"/>
+      <!-- Include any other files needed -->
+    </resource>
+    
+    
+    <resource identifier="resource_quiz2" type="webcontent" adlcp:scormType="sco" href="quiz2/index.html">
+      <file href="quiz2/index.html"/>
+      <file href="quiz2/quiz-config.json"/>
+      <file href="quiz2/quiz1-questions.json"/>
+      <file href="lib/SCORM_API_wrapper.js"/>
+      <file href="lib/style.css"/>
+   
+    </resource>
+
+    
+    <resource identifier="resource_quiz3" type="webcontent" adlcp:scormType="sco" href="quiz3/index.html">
+      <file href="quiz3/index.html"/>
+      <file href="quiz3/quiz-config.json"/>
+      <file href="quiz3/quiz1-questions.json"/>
+      <file href="lib/SCORM_API_wrapper.js"/>
+      <file href="lib/style.css"/>
+   
+    </resource>
+    
+    
+    
+  </resources>
+</manifest>

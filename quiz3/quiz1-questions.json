@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "text": "¿Qué se debe hacer primero si alguien está consciente pero ha sufrido una quemadura leve?",
+            "options": [
+                "Aplicar agua fría sobre la quemadura",
+                "Aplicar una crema especial",
+                "Tapar la quemadura con una venda",
+                "Llevar a la persona al hospital de inmediato"
+            ],
+            "correctAnswer": "Aplicar agua fría sobre la quemadura"
+        },
+        {
+            "text": "En caso de un desmayo, ¿cuál es la primera medida que se debe tomar?",
+            "options": [
+                "Colocar a la persona en posición vertical",
+                "Colocar a la persona en un lugar oscuro y frío",
+                "Acostar a la persona y elevar sus piernas",
+                "Darle agua de inmediato"
+            ],
+            "correctAnswer": "Acostar a la persona y elevar sus piernas"
+        },
+        {
+            "text": "Si una persona está teniendo una convulsión, ¿qué debes hacer?",
+            "options": [
+                "Sujetar sus manos para evitar que se lastime",
+                "Proporcionar agua para evitar la deshidratación",
+                "Colocar un objeto en su boca para evitar que se muerda",
+                "Mantenerla segura y alejar objetos peligrosos"
+            ],
+            "correctAnswer": "Mantenerla segura y alejar objetos peligrosos"
+        },
+        {
+            "text": "¿Qué se debe hacer si una persona tiene una herida sangrante?",
+            "options": [
+                "Aplicar presión directa sobre la herida",
+                "Lavar la herida con agua y jabón",
+                "Usar un torniquete para detener la hemorragia",
+                "No hacer nada hasta que llegue ayuda profesional"
+            ],
+            "correctAnswer": "Aplicar presión directa sobre la herida"
+        },
+        {
+            "text": "¿Cuál es el procedimiento adecuado si una persona sufre una fractura?",
+            "options": [
+                "Mover la parte afectada para ver si la fractura es grave",
+                "Tratar de alinear el hueso por su cuenta",
+                "Inmovilizar la zona fracturada y buscar ayuda médica",
+                "Aplicar calor en la zona afectada"
+            ],
+            "correctAnswer": "Inmovilizar la zona fracturada y buscar ayuda médica"
+        }
+    ]
+}
